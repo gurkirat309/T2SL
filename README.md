@@ -1,1 +1,1 @@
-**Converts Text To Sign Language**
+**Converts the Text To Sign Language**
