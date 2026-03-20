@@ -158,7 +158,7 @@ async def get_ui():
       <title>Sign Language Translator</title>
     </head>
     <body>
-      <h1>Sign Language Translator</h1>
+      <h1>Sign Language Translator for </h1>
       
       <input id="sentence" type="text" placeholder="Type a sentence...">
       <button id="translateBtn">Translate</button>

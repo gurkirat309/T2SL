@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Language Translator</title>
+</head>
+<body>
+  <h1>Sign Language Translator</h1>
+  
+  <!-- Input form -->
+  <input id="sentence" type="text" placeholder="Type a sentence...">
+  <button onclick="translate()">Translate</button>
+  
+  <!-- Container for animations -->
+  <div id="output"></div>
+  
+  <script>
+    async function translate() {
+      const sentence = document.getElementById("sentence").value;
+
+      // Call FastAPI endpoint
+      let response = await fetch("http://127.0.0.1:8000/a2sl", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sentence })
+      });
+
+      let words = await response.json();
+
+      let output = document.getElementById("output");
+      output.innerHTML = "";  // clear previous
+
+      // Play videos in sequence
+      let idx = 0;
+      function playNext() {
+        if (idx < words.length) {
+          let w = words[idx].toLowerCase();
+          let video = document.createElement("video");
+          video.src = `/static/videos/${w}.mp4`;
+          video.autoplay = true;
+          video.controls = false;
+          video.onended = () => {
+            idx++;
+            output.innerHTML = ""; 
+            playNext();
+          };
+          output.appendChild(video);
+        }
+      }
+      playNext();
+    }
+  </script>
+</body>
+</html>
