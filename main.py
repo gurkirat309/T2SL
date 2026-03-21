@@ -140,7 +140,7 @@ def a2sl(Item: Item):
 
     # Title-case all the words in the list
     for i in range(len(filtered_text)):
-        filtered_text[i] = filtered_text[i].title()
+        filtered_text[i] = filtered_text[i+1].title()
 
     # Update the 'words' variable with the filtered and title-cased words
     words = filtered_text
