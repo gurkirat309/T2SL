@@ -18,8 +18,7 @@ nltk.download('wordnet')
 class Item(BaseModel):
     sentence: str
 
-app = FastAPI()
-
+app = flask()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Define a root endpoint
